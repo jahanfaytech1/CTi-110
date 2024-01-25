@@ -21,7 +21,7 @@ def main():
     more_items = "y"
     #while loop to keep the program going
     while more_items == "y":
-        calc_tax()
+        TCOAI = calc_tax()
         more_items = input("Do you want to add more items (y/n)? ")
     # cacl everything after u break from the loop
     tax_rate = float(input("Enter your tax rate (%) (enter a decimal): "))
@@ -30,9 +30,9 @@ def main():
 
     subtotal = sales_tax + TCOAI
 
-    print("Total cost (pre-tax):  ", TCOAI)
-    print("Sales tax:  ", sales_tax)
-    print("Total cost (with tax):  ", subtotal)
+    print(f"Total cost (pre-tax):  ${TCOAI:.2f}")
+    print(f"Sales tax:  ${sales_tax:.2f}")
+    print(f"Total cost (with tax):  ${subtotal:.2f}")
 
 if __name__ == "__main__":
     main()
