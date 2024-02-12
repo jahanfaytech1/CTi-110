@@ -5,9 +5,9 @@
 
 # all the functions
 
-def calc_IC():
-    #start with total tax  = 0
-    total_cost = 0 
+def calc_IC(TCOAI):
+    #start the cost at 0
+    total_cost = 0
     #get number of items from user
     item_quantity = int(input("Enter number of items: "))
     # "CPI" = cost per item - get from user 
