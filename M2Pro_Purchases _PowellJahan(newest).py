@@ -5,8 +5,7 @@
 
 # import functions from other file
 
-from functions import calc_IC
-from functions import calcTC
+from functions import calc_IC, calcTC
 
 
 # main program
