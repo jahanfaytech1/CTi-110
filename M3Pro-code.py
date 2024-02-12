@@ -4,15 +4,17 @@
 # Jahan P
 
 #"ROS" = rate of spread
-def calcI(already_infected, ROS):
-    '''Takes in an integer and a list. return a list'''
-    for item in ROS:
+from functions import calcI, display_table
 
 def main():
-    
     num_infected = int(input("Enter how many people are currently infected?: "))
+    week = list(range(1, 9))
     rate_no_vac = [3, 3, 3, 3, 3, 3, 3, 3]
     rate_vac = [3, 3, 3, 3, 0.8, 0.8, 0.8, 0.8]
-    
+
+    scenario1 = calcI(num_infected, rate_no_vac)
+    scenario2 = calcI(num_infected, rate_vac)
+
+    display_table(week, scenario1, scenario2)
 if __name__ == "__main__":
     main()
