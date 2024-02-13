@@ -1,4 +1,3 @@
-# num of infected
 # 2/1/24
 # CSC121 M3Pro– List
 # Jahan P
@@ -18,4 +17,5 @@ def display_table(week, scenario1, scenario2):
     print("Week\tScenario 1\tScenario 2")
     print("--------------------------------")
     for i in range(len(week)):
-        print(f"{week[i]}\t{scenario1[i]}\t\t{scenario2[i]}")
+        print(f"{week[i]}\t{scenario1[i]}\t\t{scenario2[i]:.0f}")
+
