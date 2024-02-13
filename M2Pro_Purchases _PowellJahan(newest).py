@@ -10,11 +10,11 @@ from functions import calc_IC, calcTC
 
 # main program
 
-def main(TCOAI):
+def main():
     TCOAI = 0
     more_items = "y"
     while more_items == "y":
-        TCOAI, more_items = calc_IC()
+        TCOAI, more_items = calc_IC(TCOAI)
 
     sales_tax, subtotal = calcTC(TCOAI)
     print(f"Total cost (pre-tax):  ${TCOAI:.2f}")
@@ -24,3 +24,4 @@ def main(TCOAI):
     
 if __name__ == "__main__":
     main()
+
