@@ -17,10 +17,12 @@ def Process_PD(file_name):
     patient_data = []
     with open(file_name, 'r') as file:
         for line in file:
-            patient_id, hieght, weight = line.strip().split(',')
-            BMI = calcBMI(hieght, weight)
-            patient_data.append(patient_id, height, weight, BMI)
-        
+            patient_id, height, weight = line.strip().split(',')
+            BMI = calcBMI(height, weight)
+            if BMI is not None:
+                patient_data.append({"patient_id":patient_id, "height":height, "weight":weight, "BMI":BMI})
+            else:
+                print(f"Patient ID: {patient_id} is incorrect or doesnt exist.")
     return patient_data
 
 
@@ -35,31 +37,24 @@ def CNF(file_name):
         new_file.write("P4354,68,164 \n")
 
 def getID(patient_data, patient_id):
-    ID_list =  []
     for patient in patient_data:
         TPID = patient["patient_id"]
         if TPID == patient_id:
-            ID_list.append(patient["patient_id"]+" " + patient["BMI"])
-            if BMI is not None:
-                print(f"Patient ID: {patient_id}, BMI: {BMI:.2f}")
-                WTBF(patient_id, BMI)
-            else:
-                print(f"Patient ID: {patient_id} height or weight is incorrect.")
-    return ID_list
+            print(f"Patient ID: {patient_id}, BMI: {patient['BMI']:.2f}")
+            WTBF(patient_id, patient['BMI'])
+            return True
+    print(f"Patient ID: {patient_id} not found.")   
+    return False
 
 
 def main():
     file_name = 'patient_data.txt'
     CNF(file_name)
-    patient_id, hieght, weight, BMI, patient_data = Process_PD(file_name)
+    patient_data = Process_PD(file_name)
     #print(patient_data)
     TPID = input("Enter the ID of the patient you want to see: ")
-    for each in (getID(patient_data, patient_id)):
-        print(each)
-
+    getID(patient_data, TPID)
 
 
 if __name__ == "__main__":
     main()
-    
-#this is completely wrong edit and change depending on the last assignment - jahan 
