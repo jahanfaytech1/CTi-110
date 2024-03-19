@@ -1,52 +1,31 @@
 # 3/14/24
 # CSC-221
 # Jahan P
-# M1Lab1 - main
+# M1Pro - main
 
-# classes.py
-
-class Customer:
-    def __init__(self, cusId, name, email, isPremium):
-        self.cusId = cusId
-        self.name = name
-        self.email = email
-        self.isPremium = isPremium
-        if self.isPremium:
-            self.membership_id = f"{cusId}_100"
-
-class Product:
-    def __init__(self, product_id, name, price):
-        self.product_id = product_id
-        self.name = name
-        self.price = price
-
-class Order:
-    def __init__(self, customer, product, quantity):
-        self.customer = customer
-        self.product = product
-        self.quantity = quantity
-        self.total = product.price * quantity
-
-
-# main.py
-#from classes import Customer, Product, Order
+import csv
+from classes import Customer, Product, Order
 
 def read_customers(file_path):
     customers = []
     with open(file_path, 'r') as file:
-        next(file)  # Skip the header line
-        for line in file:
-            cusId, name, email, isPremium = line.strip().split(',')
-            customers.append(Customer(int(cusId), name, email, bool(int(isPremium))))
+        first_line = file.readline()  # Read the first line
+        if first_line.strip(): # Skip the header line
+            for line in file:
+                cusId, name, email, isPremium = line.strip().split(',')
+                customers.append(Customer(int(cusId), name, email, bool(isPremium)))
     return customers
 
 def read_products(file_path):
     products = []
     with open(file_path, 'r') as file:
-        next(file)  # Skip the header line
-        for line in file:
-            product_id, name, price = line.strip().split(',')
-            products.append(Product(int(product_id), name, float(price)))
+        first_line = file.readline()  # Read the first line
+        if first_line.strip():   
+            for line in file:
+                product_id, rest = line.strip().split(',', 1)
+                name, price = rest.rsplit(',', 1)
+                price = price.strip('$')
+                products.append(Product(int(product_id), name, float(price)))
     return products
 
 def main():
