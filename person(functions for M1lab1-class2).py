@@ -9,19 +9,16 @@ class Person:
         self.email = lastName[:5] + "_" + firstName[0:] + "@abc_shipping.com"
 
     def set_lastName(self, lastName):
-        self.__lastName = lastName
+        self.lastName = lastName
         
     def get_lastName(self):
-        return self.__lastName
+        return self.lastName
     
     def set_firstName(self, firstName):
-        self.__lastName = firstName
+        self.firstName = firstName
         
     def get_firstName(self):
-        return self.__firstName
+        return self.firstName
 
     def get_email(self):
         return self.email
-
-'''dave = Person("Miller", "Dave")
-print(dave.get_email())'''
