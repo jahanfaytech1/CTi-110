@@ -5,16 +5,16 @@
 
 # classes.py
 
+# classes.py
+
 class Customer:
-    def __init__(self, cusId, name, email):
+    def __init__(self, cusId, name, email, isPremium):
         self.cusId = cusId
         self.name = name
         self.email = email
-
-class Premium(Customer):
-    def __init__(self, cusId, name, email):
-        super().__init__(cusId, name, email)
-        self.membership_id = f"{cusId}_100"
+        self.isPremium = isPremium
+        if self.isPremium:
+            self.membership_id = f"{cusId}_100"
 
 class Product:
     def __init__(self, product_id, name, price):
@@ -29,29 +29,26 @@ class Order:
         self.quantity = quantity
         self.total = product.price * quantity
 
-
-
 # main.py
-import pandas as pd
-from classes import Customer, Premium, Product, Order
+# main.py
+from classes import Customer, Product, Order
 
 def read_customers(file_path):
-    customers_df = pd.read_csv(file_path)
     customers = []
-    for index, row in customers_df.iterrows():
-        if row['isPremium']:
-            customer = Premium(row['cusId'], row['name'], row['email'])
-        else:
-            customer = Customer(row['cusId'], row['name'], row['email'])
-        customers.append(customer)
+    with open(file_path, 'r') as file:
+        next(file)  # Skip the header line
+        for line in file:
+            cusId, name, email, isPremium = line.strip().split(',')
+            customers.append(Customer(int(cusId), name, email, bool(int(isPremium))))
     return customers
 
 def read_products(file_path):
-    products_df = pd.read_csv(file_path)
     products = []
-    for index, row in products_df.iterrows():
-        product = Product(row['product_id'], row['name'], row['price'])
-        products.append(product)
+    with open(file_path, 'r') as file:
+        next(file)  # Skip the header line
+        for line in file:
+            product_id, name, price = line.strip().split(',')
+            products.append(Product(int(product_id), name, float(price)))
     return products
 
 def main():
