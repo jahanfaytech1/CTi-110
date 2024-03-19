@@ -5,8 +5,6 @@
 
 # classes.py
 
-# classes.py
-
 class Customer:
     def __init__(self, cusId, name, email, isPremium):
         self.cusId = cusId
@@ -29,9 +27,9 @@ class Order:
         self.quantity = quantity
         self.total = product.price * quantity
 
+
 # main.py
-# main.py
-from classes import Customer, Product, Order
+#from classes import Customer, Product, Order
 
 def read_customers(file_path):
     customers = []
